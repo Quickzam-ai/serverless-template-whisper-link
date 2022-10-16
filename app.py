@@ -28,7 +28,7 @@ def inference(model_inputs: dict) -> dict:
 
     
     # Run the model
-    yt = YouTube(dict.get("myByteString"))
+    yt = YouTube(model_inputs.get("myByteString"))
     audio = whisper.load_audio(yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first().download())
     translate_options = dict(task="translate")
     result = model.transcribe(audio, **translate_options)
